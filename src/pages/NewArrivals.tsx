@@ -1,12 +1,12 @@
 import React from 'react';
-import items from './menuItem'; // Adjust the path accordingly
+import items from '../assets/menuItem';
 
 interface Props {
-  category: number;
+  // category: number;
 }
 
-const ItemDisplay: React.FC<Props> = ({ category }) => {
-  const filteredItems = category === 0 ? items : items.filter((item) => item.id === category);
+const NewArraivals: React.FC<Props> = ({ }) => {
+  const filteredItems = items.filter((item) => item.shoeCategory === 'newarrival');
   const size = ['6', '7', '8', '9', '10', '11'];
 
   return (
@@ -59,4 +59,4 @@ const ItemDisplay: React.FC<Props> = ({ category }) => {
   );
 };
 
-export default ItemDisplay;
+export default NewArraivals;

@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MenuBar from './assets/MenuBar';
 import ItemDisplay from './assets/ItemDisplay';
+import NewArrivals from './pages/NewArrivals';
+import SalesItem from './pages/SalesItem';
+import FlatHeels from './pages/FlatHeels';
+import BlockHeels from './pages/BlockHeels';
+import Shoes from './pages/Shoes';
+import Sandals from './pages/Sandals';
 
 function App() {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0);
@@ -9,14 +15,22 @@ function App() {
   const handleMenuItemClick = (index: number) => {
     setSelectedItemIndex(index);
   };
-  
-  useEffect(() => {}, [selectedItemIndex]);
-  
+
   return (
-    <>
-      <MenuBar ItemIndex={selectedItemIndex} onItemClick={handleMenuItemClick} />
-      <ItemDisplay category={selectedItemIndex} />
-    </>
+    <Router>
+      <>
+        <MenuBar ItemIndex={selectedItemIndex} onItemClick={handleMenuItemClick} />
+        <Routes>
+          <Route path="/" element={<ItemDisplay category={selectedItemIndex} />} />
+          <Route path="/new-arrivals" element={<NewArrivals/>} />
+          <Route path="/sales-item" element={<SalesItem />} />
+          <Route path="/flat-heels" element={<FlatHeels />} />
+          <Route path="/block-heels" element={<BlockHeels />} />
+          <Route path="/shoes" element={<Shoes />} />
+          <Route path="/sandals" element={<Sandals />} />
+        </Routes>
+      </>
+    </Router>
   );
 }
 
