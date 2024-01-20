@@ -1,5 +1,5 @@
 import React from 'react';
-import items from './menuItem'; // Adjust the path accordingly
+import items from './menuItem';
 
 interface Props {
   category: number;
