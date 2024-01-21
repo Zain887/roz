@@ -1,38 +1,25 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MenuBar from './assets/MenuBar';
-import ItemDisplay from './assets/ItemDisplay';
-import NewArrivals from './pages/NewArrivals';
-import SalesItem from './pages/SalesItem';
-import FlatHeels from './pages/FlatHeels';
-import BlockHeels from './pages/BlockHeels';
-import Shoes from './pages/Shoes';
-import Sandals from './pages/Sandals';
+import MenuBar from './components/MenuBar';
 import PrivateRoute from './PrivateRoute';
-import Login from './pages/Login';
+import Login from './Login';
+import ProductList from './components/ProductList';
 
 function App() {
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0);
-
-  const handleMenuItemClick = (index: number) => {
-    setSelectedItemIndex(index);
-  };
-
   return (
     <Router>
       <>
-        <MenuBar ItemIndex={selectedItemIndex} onItemClick={handleMenuItemClick} />
+        <MenuBar />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<ItemDisplay category={selectedItemIndex} />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/new-arrivals" element={<NewArrivals />} />
-            <Route path="/sales-item" element={<SalesItem />} />
-            <Route path="/flat-heels" element={<FlatHeels />} />
-            <Route path="/block-heels" element={<BlockHeels />} />
-            <Route path="/shoes" element={<Shoes />} />
-            <Route path="/sandals" element={<Sandals />} />
+            <Route path="/smartphones" element={<ProductList category='smartphones' />} />
+            <Route path="/laptops" element={<ProductList category='laptops' />} />
+            <Route path="/fragrances" element={<ProductList category='fragrances' />} />
           </Route>
+          <Route path="/skincare" element={<ProductList category='skincare' />} />
+          <Route path="/groceries" element={<ProductList category='groceries' />} />
+          <Route path="/home-decoration" element={<ProductList category='home-decoration' />} />
         </Routes>
       </>
     </Router>
