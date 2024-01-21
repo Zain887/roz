@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+// MenuBar.tsx
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveCategory } from '../redux/actions';
 
-interface Props {
-  /*  */
-}
+interface Props {}
 
 const MenuBar: React.FC<Props> = () => {
   const menu = ['home', 'smartphones', 'laptops', 'fragrances', 'skincare', 'groceries', 'home-decoration'];
-  const [active, setActive] = useState<string | null>(null);
+  const active = useSelector((state: any) => state.activeCategory);
+  const dispatch = useDispatch();
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   const activeItem = (category: string) => {
-    setActive(category);
+    dispatch(setActiveCategory(category));
   };
-
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   return (
     <>
@@ -24,8 +25,7 @@ const MenuBar: React.FC<Props> = () => {
         </div>
         <ul className='flex justify-center'>
           {menu.map((category) => (
-            <li key={category}
-              onClick={() => activeItem(category)}>
+            <li key={category} onClick={() => activeItem(category)}>
               <Link
                 className={`text-white px-[1vw] cursor-pointer text-[1vw] duration-300 ${active === category ? 'text-red-600 font-bold' : ''}`}
                 to={category === 'home' ? '/' : `/${category.toLowerCase()}`}

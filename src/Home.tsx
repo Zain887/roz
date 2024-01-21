@@ -7,9 +7,7 @@ interface Props {
 const Home: React.FC<Props> = (props) => {
     // Dummy banner data
     const banners = [
-        'https://via.placeholder.com/1200x300?text=Banner+1',
-        'https://via.placeholder.com/1200x300?text=Banner+2',
-        'https://via.placeholder.com/1200x300?text=Banner+3',
+        'https://via.placeholder.com/1200x300?text=Banner+1'
     ];
 
     // Dummy product data
@@ -33,11 +31,6 @@ const Home: React.FC<Props> = (props) => {
 
     return (
         <div className="container mx-auto mt-5">
-            <div className="mb-5">
-                {banners.map((banner, index) => (
-                    <img key={index} src={banner} alt={`Banner ${index + 1}`} className="w-full mb-2" />
-                ))}
-            </div>
             <h2 className="text-3xl font-bold mb-5">Featured Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {products.map((product) => (
@@ -48,11 +41,13 @@ const Home: React.FC<Props> = (props) => {
                             className="w-full h-40 object-cover mb-4 rounded-lg"
                         />
                         <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
-                        <p className="text-gray-600">Product description goes here...</p>
-                        <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">
-                            View Details
-                        </button>
+                        <p className="text-gray-600"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim deserunt id facere consequuntur. Dicta maxime tenetur recusandae doloremque excepturi eum quae animi corrupti nesciunt cum fuga esse aliquid, tempore rem? </p>
                     </div>
+                ))}
+            </div>
+            <div className="my-5">
+                {banners.map((banner, index) => (
+                    <img key={index} src={banner} alt={`Banner ${index + 1}`} className="w-full mb-2" />
                 ))}
             </div>
         </div>
