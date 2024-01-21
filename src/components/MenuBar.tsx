@@ -7,7 +7,7 @@ interface Props {
 }
 
 const MenuBar: React.FC<Props> = () => {
-  const menu = ['smartphones', 'laptops', 'fragrances', 'skincare', 'groceries', 'home-decoration'];
+  const menu = ['home', 'smartphones', 'laptops', 'fragrances', 'skincare', 'groceries', 'home-decoration'];
   const [active, setActive] = useState<string | null>(null);
 
   const activeItem = (category: string) => {
@@ -28,7 +28,7 @@ const MenuBar: React.FC<Props> = () => {
               onClick={() => activeItem(category)}>
               <Link
                 className={`text-white px-[1vw] cursor-pointer text-[1vw] duration-300 ${active === category ? 'text-red-600 font-bold' : ''}`}
-                to={`/${category.toLowerCase()}`}
+                to={category === 'home' ? '/' : `/${category.toLowerCase()}`}
               >
                 {category.toUpperCase()}
               </Link>
